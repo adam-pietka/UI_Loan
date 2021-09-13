@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -18,12 +19,10 @@ public class CustomerForm extends FormLayout {
     private Binder<Customer> binder = new Binder<Customer>(Customer.class);
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
-
     private TextField name = new TextField("Name");
     private TextField surname = new TextField("Surname");
     private TextField peselNumber = new TextField("Number PESEL");
     private ComboBox<IdType> idType = new ComboBox<>("ID type");
-
 
     public CustomerForm(MainView mainView) {
         idType.setItems(IdType.values());
@@ -59,6 +58,4 @@ public class CustomerForm extends FormLayout {
             name.focus();
         }
     }
-
-
 }
