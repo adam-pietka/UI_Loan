@@ -36,21 +36,21 @@ public class CustomerForm extends FormLayout {
         delete.addClickListener(event -> delete());
     }
 
-    private void delete() {
+    public void delete() {
         Customer customer = binder.getBean();
         customerService.delete(customer);
         mainView.refresh();
         setCustomer(null);
     }
 
-    private void save() {
+    public void save() {
         Customer customer = binder.getBean();
         customerService.save(customer);
         mainView.refresh();
         setCustomer(null);
     }
 
-    private void setCustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         binder.setBean(customer);
         if (customer == null){
             setVisible(false);

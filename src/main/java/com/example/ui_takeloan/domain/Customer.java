@@ -25,6 +25,9 @@ public class Customer extends VerticalLayout {
     private LocalDate registrationDate;
     private LocalDate closedDate;
 
+    public Customer() {
+    }
+
     public Customer(Long customerId, String name, String surname, String phoneNumber, String addressStreet, String addressNumber, String addressPostCode, String addressCity, String peselNumber, String nipNumber, IdType idType, String idNumber, String mailAddress, boolean isCustomerActive, LocalDate registrationDate, LocalDate closedDate) {
         this.customerId = customerId;
         this.name = name;

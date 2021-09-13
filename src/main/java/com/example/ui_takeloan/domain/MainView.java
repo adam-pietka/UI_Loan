@@ -17,6 +17,7 @@ public class MainView extends VerticalLayout {
     private Grid<Customer> grid = new Grid<>(Customer.class);
     private TextField filter = new TextField();
     private CustomerForm form = new CustomerForm(this);
+    private Button addNewCustomer = new Button("Add new customer");
 
 
     public MainView(){
@@ -24,19 +25,23 @@ public class MainView extends VerticalLayout {
         filter.setClearButtonVisible(true);
         filter.setValueChangeMode(ValueChangeMode.EAGER);
         filter.addValueChangeListener(e -> update());
+        grid.setColumns("name", "surname",  "peselNumber", "idType");
+
+        addNewCustomer.addClickListener(e-> {
+            grid.asSingleSelect().clear();
+            form.setCustomer(new Customer());
+        });
+        HorizontalLayout toolbar = new HorizontalLayout(filter, addNewCustomer);
 
 //        grid.setColumns("name", "surname", "phoneNumber", "addressStreet", "addressNumber", "addressPostCode", "addressCity", "peselNumber", "nipNumber", "idType", "idNumber", "mailAddress",  "registrationDate", "closedDate");
-        grid.setColumns("name", "surname",  "peselNumber", "idType");
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         mainContent.setSizeFull();
         grid.setSizeFull();
-//        add(grid);
-
-//        add(filter, grid);
-        add(filter, mainContent);
+        add(toolbar, mainContent);
+        form.setCustomer(null);
         setSizeFull();
         refresh();
-
+        grid.asSingleSelect().addValueChangeListener(event -> form.setCustomer(grid.asSingleSelect().getValue()));
     }
 
     public void  refresh() {
