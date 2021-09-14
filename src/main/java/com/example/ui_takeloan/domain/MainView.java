@@ -4,6 +4,7 @@ import com.example.ui_takeloan.form.CustomerForm;
 import com.example.ui_takeloan.service.CustomerService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -18,6 +19,8 @@ public class MainView extends VerticalLayout {
     private TextField filter = new TextField();
     private CustomerForm form = new CustomerForm(this);
     private Button addNewCustomer = new Button("Add new customer");
+    private Button testButton = new Button("TEST");
+    private Label labelOne = new Label();
 
 
     public MainView(){
@@ -31,12 +34,14 @@ public class MainView extends VerticalLayout {
             grid.asSingleSelect().clear();
             form.setCustomer(new Customer());
         });
-        HorizontalLayout toolbar = new HorizontalLayout(filter, addNewCustomer);
+        HorizontalLayout toolbar = new HorizontalLayout(filter, addNewCustomer, testButton);
 
 //        grid.setColumns("name", "surname", "phoneNumber", "addressStreet", "addressNumber", "addressPostCode", "addressCity", "peselNumber", "nipNumber", "idType", "idNumber", "mailAddress",  "registrationDate", "closedDate");
+
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         mainContent.setSizeFull();
         grid.setSizeFull();
+
         add(toolbar, mainContent);
         form.setCustomer(null);
         setSizeFull();
